@@ -1,0 +1,169 @@
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0; /* Background color */
+    color: #333; /* Text color */
+    line-height: 1.6;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #333;
+    font-family: 'Georgia', serif; /* Elegant serif font for headings */
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Styling the navigation bar */
+nav {
+    text-align: center;
+    margin: 20px 0;
+}
+
+nav a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: #0056b3; /* Blue color */
+    margin: 0 15px;
+    padding: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #b0c4de; /* Light blue on hover */
+}
+
+/* Styling for the lists */
+ol {
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Style the image */
+img {
+    display: block;
+    margin: 0 auto 20px; /* Center the image */
+    border: 5px solid #ddd;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+/* Style the embedded YouTube video */
+iframe {
+    display: block;
+    margin: 20px auto;
+    border: none;
+}
+
+/* Anchor section */
+#contentSection {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#contentSection h2 {
+    color: #444;
+    font-size: 1.8rem;
+}
+
+/* Tableau embed */
+iframe[src*="tableau"] {
+    border: none;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Add some spacing between sections */
+section {
+    margin-bottom: 40px;
+}
+
+/* Additional styling for better text readability */
+p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Styling for header with background image */
+.common.header {
+    background-image: url('image.Lagos.jpg'); /* Replace with your image file path */
+    background-size: cover; /* Ensures the image covers the entire header */
+    background-position: center; /* Centers the image */
+    color: white; /* Text color to stand out against the background */
+    padding: 0px 0; /* Adjust padding for header space */
+    text-align: center; /* Centers the text in the header */
+}
+
+body {
+    background-color: red; /* Test change */
+}
+
+.image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image-container p {
+    font-size: 1rem;
+    color: #333;
+    margin-top: 10px;
+    font-style: italic; /* Optional: makes the caption italic */
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f0f0f0; /* You can customize the background color */
+}
+
+.return-to-top {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: bold;
+}
+
+.return-to-top:hover {
+    color: #003366; /* Darker color on hover */
+    text-decoration: underline;
+}
+

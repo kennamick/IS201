@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Where in Europe Am I?</title>
+ <style>
+   body {
+     font-family: Arial, sans-serif;
+     background-color: #f0f8ff;
+     text-align: center;
+     padding: 30px;
+   }
+   .game-box {
+     background: white;
+     padding: 30px;
+     max-width: 600px;
+     margin: auto;
+     border-radius: 12px;
+     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+   }
+   button {
+     margin: 10px;
+     padding: 12px 20px;
+     font-size: 16px;
+     border: none;
+     border-radius: 6px;
+     background-color: #4682B4;
+     color: white;
+     cursor: pointer;
+   }
+   button:hover {
+     background-color: #3b6c99;
+   }
+   #score, #feedback {
+     font-size: 18px;
+     margin-top: 15px;
+   }
+   #feedback.correct {
+     color: green;
+   }
+   #feedback.wrong {
+     color: red;
+   }
+ </style>
+</head>
+<body>
+
+
+ <h1>🌍 Where in Europe Am I?</h1>
+ <div class="game-box">
+   <h2 id="question">Click Start to begin!</h2>
+   <div id="options"></div>
+   <p id="feedback"></p>
+   <p id="score"></p>
+   <button id="startBtn" onclick="startGame()">Start</button>
+ </div>
+
+
+ <script>
+   const questionPool = [
+     { question: "Which city is known for the Eiffel Tower?", options: ["Paris", "Berlin", "Madrid", "Rome"], answer: "Paris" },
+     { question: "Which city is home to the Colosseum?", options: ["Athens", "Rome", "Barcelona", "Vienna"], answer: "Rome" },
+     { question: "Which city is known for its canals and bicycles?", options: ["Amsterdam", "Prague", "Florence", "Lisbon"], answer: "Amsterdam" },
+     { question: "Where can you find the Sagrada Família?", options: ["Milan", "Seville", "Barcelona", "Porto"], answer: "Barcelona" },
+     { question: "Which city hosts Oktoberfest?", options: ["Berlin", "Vienna", "Munich", "Hamburg"], answer: "Munich" },
+     { question: "Which city has the Anne Frank House?", options: ["Brussels", "Amsterdam", "Copenhagen", "Stockholm"], answer: "Amsterdam" },
+     { question: "Where is the Acropolis located?", options: ["Athens", "Naples", "Rome", "Istanbul"], answer: "Athens" },
+     { question: "Which city is home to Big Ben?", options: ["London", "Dublin", "Manchester", "Glasgow"], answer: "London" },
+     { question: "Which city has the famous Grand Place square?", options: ["Luxembourg City", "Brussels", "Geneva", "Oslo"], answer: "Brussels" },
+     { question: "Which city is famous for the Charles Bridge?", options: ["Prague", "Warsaw", "Salzburg", "Bucharest"], answer: "Prague" }
+   ];
+
+
+   let shuffledQuestions = [];
+   let correctAnswers = 0;
+   let currentIndex = 0;
+
+
+   const questionEl = document.getElementById("question");
+   const optionsEl = document.getElementById("options");
+   const scoreEl = document.getElementById("score");
+   const feedbackEl = document.getElementById("feedback");
+   const startBtn = document.getElementById("startBtn");
+
+
+   function startGame() {
+     shuffledQuestions = shuffle([...questionPool]);
+     correctAnswers = 0;
+     currentIndex = 0;
+     scoreEl.textContent = "Correct Answers: 0 / 5";
+     feedbackEl.textContent = "";
+     startBtn.style.display = "none";
+     showNextQuestion();
+   }
+
+
+   function showNextQuestion() {
+     if (correctAnswers === 5) {
+       questionEl.textContent = "🎉 You won! You got 5 correct!";
+       optionsEl.innerHTML = "";
+       feedbackEl.textContent = "";
+       scoreEl.textContent = "";
+       startBtn.textContent = "Play Again";
+       startBtn.style.display = "inline-block";
+       return;
+     }
+
+
+     if (currentIndex >= shuffledQuestions.length) {
+       questionEl.textContent = "Game Over – No more questions!";
+       optionsEl.innerHTML = "";
+       feedbackEl.textContent = "";
+       scoreEl.textContent = `You got ${correctAnswers} correct.`;
+       startBtn.textContent = "Play Again";
+       startBtn.style.display = "inline-block";
+       return;
+     }
+
+
+     const q = shuffledQuestions[currentIndex];
+     questionEl.textContent = q.question;
+     optionsEl.innerHTML = "";
+     feedbackEl.textContent = "";
+
+
+     q.options.forEach(option => {
+       const btn = document.createElement("button");
+       btn.textContent = option;
+       btn.onclick = () => checkAnswer(option, q.answer);
+       optionsEl.appendChild(btn);
+     });
+   }
+
+
+   function checkAnswer(selected, correct) {
+     const buttons = optionsEl.querySelectorAll("button");
+     buttons.forEach(btn => btn.disabled = true);
+
+
+     if (selected === correct) {
+       correctAnswers++;
+       feedbackEl.textContent = "✅ Correct!";
+       feedbackEl.className = "correct";
+     } else {
+       feedbackEl.textContent = `❌ Wrong! The correct answer was ${correct}.`;
+       feedbackEl.className = "wrong";
+     }
+
+
+     scoreEl.textContent = `Correct Answers: ${correctAnswers} / 5`;
+
+
+     setTimeout(() => {
+       currentIndex++;
+       showNextQuestion();
+     }, 1500);
+   }
+
+
+   function shuffle(array) {
+     for (let i = array.length - 1; i > 0; i--) {
+       const j = Math.floor(Math.random() * (i + 1));
+       [array[i], array[j]] = [array[j], array[i]];
+     }
+     return array;
+   }
+ </script>
+
+
+</body>
+</html>
